@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="歡迎來到毛小孩樂園，探索貓狗的奇妙世界，了解更多關於寵物生活的知識。">
+  <meta name="keywords" content="寵物, 貓, 狗, 寵物照護, 寵物資訊">
+  <meta name="author" content="Your Name">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+  <title>寵愛森林 - 探索貓狗的奇妙世界</title>
+  <style>
+    body {
+      padding: 20px;
+      font-family: Arial, sans-serif;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .carousel-item img {
+      width: calc(100% - 50px);
+      height: 600px;
+      object-fit: cover;
+      margin: 0 auto;
+    }
+    .button {
+            display: inline-block;
+            padding: 5px 5px;
+            margin: 5px;
+            margin-top: 5px;
+            margin-bottom: 5px;
+            font-size: 20px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            background-color: #ffcccb;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            transition: background-color 0.3s;
+        }
+        .button img {
+            width:1em;
+            height: 1em;
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+        .button:hover {
+            background-color: #f5b4b4;
+        }
+        
+        .navbar-nav .nav-item .nav-link {
+            font-size: 20px;
+        }
+        .navbar-nav .nav-item .nav-link {
+            margin: 0 5px;
+            padding: 5px;
+            border: 1px solid transparent;
+            border-radius: 5px;
+        }
+        .navbar-nav .nav-item .nav-link:hover {
+            border: 1px solid #333;
+            background-color: #dea4b6;
+        }
+        .navbar-nav .nav-item .nav-link.active {
+            border: 1px solid #333;
+            background-color: #e994d1;
+        }
+    .custom-column {
+      background-color: #f8f9fa;
+      padding: 10px;
+      margin-bottom: 20px;
+      text-align: center;
+      border-radius: 5px;
+    }
+    .custom-column img, .custom-column video {
+      max-width: 100%;
+      height: auto;
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
+    .custom-column .video-container {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      max-width: 100%;
+      background: #000;
+    }
+    .custom-column .video-container video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .left-align {
+      text-align: left;
+    }
+    .image-container {
+      text-align: center;
+    }
+    .image-title {
+      font-size: 20px;
+      font-weight: bold;
+      margin-top: 10px;
+      color: #333;
+    }
+    .image-description {
+      font-size: 18px;
+      margin-top: 5px;
+      color: #666;
+    }
+    .custom-text {
+      font-weight: bold;
+      font-size: 28px;
+      color: #020c16;
+      margin-top: 20px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .custom-spacing {
+      letter-spacing: 1.8px;
+      font-size: 18px;
+      margin-top: 20px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .carousel-container {
+      padding: 0 20px;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light custom-navbar">
+    <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav" id="dynamic-nav">
+                <li class="nav-item">
+                    <a class="button" href="kk.html"><img src="img/5.png" alt="Cat Icon">森林小徑</a>
+                </li>
+                <li class="nav-item">
+                  <a class="button" href="as.html"><img src="img/5.png" alt="Cat Icon">寵愛生活</a>
+                </li>
+                <li class="nav-item">
+                  <a class="button" href="po.html"><img src="img/5.png" alt="Cat Icon">寵物須知</a>
+                </li>
+                <li class="nav-item">
+                  <a class="button" href="yu.html"><img src="img/5.png" alt="Cat Icon">關於我們</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+  
+  <div id="navbar-placeholder"></div>
+  <script>
+    fetch('navbar.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('navbar-placeholder').innerHTML = data;
+        updateNavLinks();
+      });
+
+    function updateNavLinks() {
+      const navLinks = [
+        { page: 'index.html', text: '首頁', href: 'index.html' },
+        { page: 'as.html', text: '寵愛生活', href: 'as.html' },
+        { page: 'po.html', text: '寵物須知', href: 'po.html' },
+        { page: 'yu.html', text: '關於我們', href: 'yu.html' }
+      ];
+
+      const currentPage = window.location.pathname.split('/').pop();
+      const navContainer = document.getElementById('dynamic-nav');
+
+      navLinks.forEach(link => {
+        const li = document.createElement('li');
+        li.className = 'nav-item';
+        const a = document.createElement('a');
+        a.className = 'nav-link';
+        if (link.page === currentPage) {
+          a.classList.add('active');
+        }
+        a.href = link.href;
+        a.textContent = link.text;
+        li.appendChild(a);
+        navContainer.appendChild(li);
+      });
+    }
+  </script>
+
+  <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2000" data-bs-pause="false">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="img/304.jpg" class="d-block w-100" alt="Slide 1">
+        <div class="carousel-caption d-none d-md-block">
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="img/410.jpg" class="d-block w-100" alt="Slide 2">
+        <div class="carousel-caption d-none d-md-block">
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="img/411.jpg" class="d-block w-100" alt="Slide 3">
+        <div class="carousel-caption d-none d-md-block">
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="img/412.jpg" class="d-block w-100" alt="Slide 4">
+        <div class="carousel-caption d-none d-md-block">
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="img/408.jpg" class="d-block w-100" alt="Slide 5">
+        <div class="carousel-caption d-none d-md-block">
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="img/413.jpg" class="d-block w-100" alt="Slide 6">
+        <div class="carousel-caption d-none d-md-block">
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
+  <main>
+    <h1 class="custom-text">歡迎來到毛小孩樂園：一起探索貓狗的奇妙世界！</h1>
+    <p class="custom-spacing">在這個充滿愛與溫暖的網頁上，您將進入一個專屬於毛小孩們的奇妙天地。<br>
+      我們的網站不僅是一個展示貓狗美麗照片和影片的地方，更是每一位毛小孩愛好者的交流平台。
+    </p>
+    <div class="row">
+      <div class="col-lg-3 col-md-4 col-sm-6 custom-column">
+        <img src="img/73.jpg" alt="微微 美國短毛貓 5歲" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="setModalContent(4, 'image')">
+      </div>
+      <div class="col-lg-3 col-md-4 col-sm-6 custom-column">
+        <img src="img/75.jpg" alt="微微 美國短毛貓 5歲" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="setModalContent(4, 'image')">
+      </div>
+      <div class="col-lg-3 col-md-4 col-sm-6 custom-column">
+        <img src="img/76.jpg" alt="微微 美國短毛貓 5歲" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="setModalContent(4, 'image')">
+      </div>
+      <div class="col-lg-3 col-md-4 col-sm-6 custom-column">
+        <img src="img/77.jpg" alt="微微 美國短毛貓 5歲" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="setModalContent(4, 'image')">
+      </div>
+    </div>
+
+    <h2 class="custom-text">探索毛小孩的生活點滴</h2> 
+    <p class="custom-spacing">在我們的網站上，您可以看到各式各樣的可愛貓狗照片，每一張都記錄著牠們的獨特故事和生活趣事。<br>
+      從溫暖的家庭照，到可愛的搞笑瞬間，還有萌態百出的日常小劇場，讓您在每一次點擊中都能感受到無盡的快樂和驚喜。
+    </p>
+    <div class="row">
+      <div class="col-lg-3 col-md-4 col-sm-6 custom-column">
+        <img src="img/80.jpg" alt="微微 美國短毛貓 5歲" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="setModalContent(4, 'image')">
+      </div>
+      <div class="col-lg-3 col-md-4 col-sm-6 custom-column">
+        <img src="img/81.jpg" alt="微微 美國短毛貓 5歲" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="setModalContent(4, 'image')">
+      </div>
+      <div class="col-lg-3 col-md-4 col-sm-6 custom-column">
+        <img src="img/82.jpg" alt="微微 美國短毛貓 5歲" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="setModalContent(4, 'image')">
+      </div>
+      <div class="col-lg-3 col-md-4 col-sm-6 custom-column">
+        <img src="img/83.jpg" alt="微微 美國短毛貓 5歲" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="setModalContent(4, 'image')">
+      </div>
+    </div>
+    
+    <h2 class="custom-text">一起關愛毛小孩，拒絕流浪！</h2>
+    <p class="custom-spacing">我們的宗旨是提升公眾對毛小孩的關愛與責任意識。每一隻毛小孩的背後，都是一個家庭的希望和夢想。<br>
+      我們呼籲每一位愛心人士，在選擇養寵物時，不僅要考慮自身的經濟和時間，也要承擶起對毛小孩終生的責任。<br>
+      讓我們一起行動起來，拒絕流浪，讓每一隻毛小孩都能在溫暖的家庭中找到屬於自己的幸福。
+    </p>
+    <div class="row">
+      <div class="col-lg-6 col-md-6 col-sm custom-column">
+        <img src="img/93.jpg" alt="微微 美國短毛貓 5歲" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="setModalContent(4, 'image')">
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm custom-column">
+        <img src="img/79.jpg" alt="微微 美國短毛貓 5歲" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="setModalContent(4, 'image')">
+      </div>
+    </div>
+
+    <h2 class="custom-text">互動分享，讓愛不再孤單！</h2>
+    <p class="custom-spacing">除了欣賞各種萌照和影片，我們還設有專屬社群和論壇，鼓勵每位毛小孩主人分享自己的故事和經歷。<br>
+      無論是訓練技巧、健康護理還是日常趣事，這裡都是您與其他毛小孩愛好者交流的最佳平台。
+    </p>
+    <div class="row">
+      <div class="col-lg-4 col-md-3 col-sm-2 custom-column">
+        <img src="img/102.jpg" alt="微微 美國短毛貓 5歲"data-bs-toggle="modal" data-bs-target="#imageModal" onclick="setModalContent(4, 'image')">
+      </div>
+      <div class="col-lg-4 col-md-3 col-sm-2 custom-column">
+        <img src="img/103.jpg" alt="微微 美國短毛貓 5歲" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="setModalContent(4, 'image')">
+      </div>
+      <div class="col-lg-4 col-md-3 col-sm-2 custom-column">
+        <img src="img/107.jpg" alt="微微 美國短毛貓 5歲"data-bs-toggle="modal" data-bs-target="#imageModal" onclick="setModalContent(4, 'image')">
+      </div>
+    </div>
+
+    <h2 class="custom-text">立即參與，讓我們一起打造更美好的毛小孩世界！</h2>
+    <p class="custom-spacing">現在就來探索我們的網站吧！無論您是想要了解更多毛小孩的生活常識，還是想找到一個和您志同道合的朋友，這裡都將是您的理想之地。<br>
+      讓我們一起為毛小孩的幸福與未來努力，讓愛與關懷在每一個角落綻放光芒！
+    </p>
+    <div class="row">
+      <div class="col-lg-6 col-md-6 col-sm custom-column">
+        <img src="img/92.jpg" alt="微微 美國短毛貓 5歲" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="setModalContent(4, 'image')">
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm custom-column">
+        <img src="img/460.jpg" alt="微微 美國短毛貓 5歲" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="setModalContent(4, 'image')">
+      </div>
+    </div>
+
+    <h2 class="custom-text">讓我們一起用愛心和行動，為每一隻毛小孩創造一個更美好的明天！</h2>
+  </main>
+</body>
+</html>

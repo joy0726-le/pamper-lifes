@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="歡迎來到寵愛生活，這裡是寵物的天堂，分享可愛的寵物照片和影片。">
+    <meta name="keywords" content="寵物, 貓, 狗, 寵物生活, 可愛動物">
+    <meta name="author" content="Your Name">
+    <title>寵愛生活 - 寵物天堂</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+    <style>
+        .button {
+            display: inline-block;
+            padding: 5px 5px;
+            margin: 5px;
+            margin-top: 5px;
+            margin-bottom: 5px;
+            font-size: 20px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            background-color: #ffcccb;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            transition: background-color 0.3s;
+        }
+        .button img {
+            width: 1em;
+            height: 1em;
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+        .button:hover {
+            background-color: #f5b4b4;
+        }
+        .navbar-nav .nav-item .nav-link {
+            font-size: 20px;
+        }
+        .navbar-nav .nav-item .nav-link {
+            margin: 0 5px;
+            padding: 5px;
+            border: 1px solid transparent;
+            border-radius: 5px;
+        }
+        .navbar-nav .nav-item .nav-link:hover {
+            border: 1px solid #333;
+            background-color: #dea4b6;
+        }
+        .navbar-nav .nav-item .nav-link.active {
+            border: 1px solid #333;
+            background-color: #e994d1;
+        }
+        .custom-column {
+            background-color: #f8f9fa;
+            padding: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+            border-radius: 5px;
+        }
+        .custom-column img, .custom-column video {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 100%;
+            overflow: hidden;
+            border-radius: 5px;
+        }
+        .video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .image-container {
+            text-align: center;
+        }
+        .image-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 10px;
+            color: #333;
+        }
+        .image-description {
+            font-size: 18px;
+            margin-top: 5px;
+            color: #666;
+        }
+        .modal-content {
+            background-color: rgba(0, 0, 0, 0.8);
+            border: none;
+            border-radius: 0;
+        }
+        .modal-body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: auto;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+        .modal-body img, .modal-body video {
+            max-height: 100%;
+            max-width: 100%;
+        }
+        .modal-header, .modal-footer {
+            border: none;
+        }
+        .introduction {
+            text-align: left;
+            margin: 20px auto;
+            padding: 0 20px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .intro-title {
+            font-family: 'cwTeXYen', sans-serif;
+            font-size: 35px;
+            font-weight: normal;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .intro-text {
+            font-size: 18px;
+            font-weight: normal;
+            margin-bottom: 20px;
+            color: #666;
+        }
+        h2 {
+            font-size: 24px;
+            font-family: 'Verdana', sans-serif;
+        }
+        .video-container-horizontal {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            overflow: hidden;
+            border-radius: 5px;
+        }
+        .video-container-horizontal video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .title-decorator {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+        .title-decorator h2 {
+            margin: 0;
+            display: inline;
+            text-align: center;
+        }
+        .title-decorator img {
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+        }
+        .title-decorator::after {
+            content: "";
+            flex-grow: 1;
+            height: 1px;
+            background: #ccc;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light custom-navbar">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav" id="dynamic-nav">
+                    <li class="nav-item">
+                        <a class="button" href="kk.html"><img src="img/5.png" alt="Cat Icon">森林小徑</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="button" href="as.html"><img src="img/5.png" alt="Cat Icon">寵愛生活</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="button" href="po.html"><img src="img/5.png" alt="Cat Icon">寵物須知</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="button" href="yu.html"><img src="img/5.png" alt="Cat Icon">關於我們</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div id="navbar-placeholder"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-placeholder').innerHTML = data;
+                updateNavLinks();
+            });
+
+        function updateNavLinks() {
+            const navLinks = [
+                { page: 'index.html', text: '首頁', href: 'index.html' },
+                { page: 'as.html', text: '寵愛生活', href: 'as.html' },
+                { page: 'po.html', text: '寵物須知', href: 'po.html' },
+                { page: 'yu.html', text: '關於我們', href: 'yu.html' }
+            ];
+
+            const currentPage = window.location.pathname.split('/').pop();
+            const navContainer = document.getElementById('dynamic-nav');
+
+            navLinks.forEach(link => {
+                const li = document.createElement('li');
+                li.className = 'nav-item';
+                const a = document.createElement('a');
+                a.className = 'nav-link';
+                if (link.page === currentPage) {
+                    a.classList.add('active');
+                }
+                a.href = link.href;
+                a.textContent = link.text;
+                li.appendChild(a);
+                navContainer.appendChild(li);
+            });
+        }
+    </script>
+
+    <div class="introduction">
+        <h1 class="intro-title">寵愛生活介紹</h1>
+        <p class="intro-text">歡迎來到寵愛森林，這裡是寵物的天堂。</p>
+        <p class="intro-text">我們致力於分享可愛的寵物照片和影片，展示牠們的日常生活和搞笑瞬間。</p>
+        <p class="intro-text">無論是貓咪、狗狗還是其他動物朋友，牠們都在這裡擁有專屬的舞台。</p>
+        <p class="intro-text">在這裡，您可以看到小動物們的可愛模樣，每一個瞬間都充滿了愛與溫暖。</p>
+        <p class="intro-text">我們的目標是讓每一位訪客都能感受到寵物們帶來的無限歡樂和心靈的慰藉。</p>
+        <p class="intro-text">加入我們的寵愛森林社群，和我們一起分享您與愛寵的點滴時光。</p>
+        <p class="intro-text">我們期待聽到您的故事，讓我們一起為這些可愛的生靈打造一個充滿愛與關懷的世界。</p>
+    </div>
+    <div class="container-fluid">
+        <div class="title-decorator">
+            <img src="img/22.png" alt="Flower Icon">
+            <h2 class="text-center my-4">可愛動物介紹區</h2>
+            <img src="img/22.png" alt="Flower Icon">
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-md-4 col-sm-6 custom-column">
+                <img src="img/1.jpg" alt="CHOCO 臘腸狗 16歲" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="setModalContent(0, 'image', 'cuteAnimals')">
+                <h3 class="image-title">CHOCO 臘腸狗 16歲</h3>
+                <p class="image-description">眼神裡總是透露出無窮的親和力</p>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 custom-column">
+                <img src="img/2.jpg" alt="漢堡 奶牛貓 1歲" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="setModalContent(1, 'image', 'cuteAnimals')">
+                <h3 class="image-title">漢堡 奶牛貓 1歲</h3>
+                <p class="image-description">擅長調皮搗亂但也極具魅力</p>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 custom-column">
+                <img src="img/3.jpg" alt="咪寶 美國短毛貓 4歲" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="setModalContent(2, 'image', 'cuteAnimals')">
+                <h3 class="image-title">咪寶 美國短毛貓 4歲</h3>
+                <p class="image-description">撒嬌模樣及柔軟步伐容易攻佔人心</p>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 custom-column">
+                <img src="img/4.jpg" alt="波特 美國短毛貓 4歲" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="setModalContent(3, 'image', 'cuteAnimals')">
+                <h3 class="image-title">波特 美國短毛貓 4歲</h3>
+                <p class="image-description">不可一世的高冷氣質令人印象深刻</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-md-4 col-sm-6 custom-column">
+                <img src="img/05.jpg" alt="微微 美國短毛貓 5歲" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="setModalContent(4, 'image', 'cuteAnimals')">
+                <h3 class="image-title">微微 美國短毛貓 5歲</h3>
+                <p class="image-description">圓滾滾的身軀讓人忍不住想要撫摸</p>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 custom-column">
+                <img src="img/06.jpg" alt="芋圓 美國短毛貓 5歲" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="setModalContent(5, 'image', 'cuteAnimals')">
+                <h3 class="image-title">芋圓 美國短毛貓 5歲</h3>
+                <p class="image-description">一對好奇的大眼睛準備著探索新事物</p>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 custom-column">
+                <img src="img/7.jpg" alt="小咪 黑貓 5歲" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="setModalContent(6, 'image', 'cuteAnimals')">
+                <h3 class="image-title">小咪 黑貓 5歲</h3>
+                <p class="image-description">圓滾滾的眼睛及憨憨的模樣極其迷人</p>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 custom-column">
+                <img src="img/8.jpg" alt="松露 英國短毛貓 4歲" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="setModalContent(7, 'image', 'cuteAnimals')">
+                <h3 class="image-title">松露 英國短毛貓 4歲</h3>
+                <p class="image-description">讓人又氣又愛且無計可施的貪吃鬼</p>
+            </div>
+        </div>
+        <div class="title-decorator">
+            <img src="img/22.png" alt="Flower Icon">
+            <h2 class="text-center my-4">日常生活區</h2>
+            <img src="img/22.png" alt="Flower Icon">
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-md-4 col-sm-6 custom-column">
+                <div class="image-container-horizontal" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="setModalContent(0, 'image', 'dailyLife')">
+                    <img src="img/9.jpg" alt="漢堡">
+                </div>
+                <h3 class="image-title"></h3>
+                <p class="image-description"></p>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 custom-column">
+                <div class="image-container-horizontal" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="setModalContent(1, 'image', 'dailyLife')">
+                    <img src="img/10.jpg" alt="吃罐罐－1">
+                </div>
+                <h3 class="image-title"></h3>
+                <p class="image-description"></p>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 custom-column">
+                <div class="image-container-horizontal" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="setModalContent(2, 'image', 'dailyLife')">
+                    <img src="img/11.jpg" alt="吃罐罐－2">
+                </div>
+                <h3 class="image-title"></h3>
+                <p class="image-description"></p>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 custom-column">
+                <div class="image-container-horizontal" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="setModalContent(3, 'image', 'dailyLife')">
+                    <img src="img/12.jpg" alt="波特">
+                </div>
+                <h3 class="image-title"></h3>
+                <p class="image-description"></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-md-4 col-sm-6 custom-column">
+                <div class="image-container-horizontal" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="setModalContent(4, 'image', 'dailyLife')">
+                    <img src="img/13.jpg" alt="微微＆芋圓">
+                </div>
+                <h3 class="image-title"></h3>
+                <p class="image-description"></p>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 custom-column">
+                <div class="image-container-horizontal" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="setModalContent(5, 'image', 'dailyLife')">
+                    <img src="img/14.jpg" alt="芋圓">
+                </div>
+                <h3 class="image-title"></h3>
+                <p class="image-description"></p>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 custom-column">
+                <div class="image-container-horizontal" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="setModalContent(6, 'image', 'dailyLife')">
+                    <img src="img/15.jpg" alt="咪寶">
+                </div>
+                <h3 class="image-title"></h3>
+                <p class="image-description"></p>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 custom-column">
+                <div class="image-container-horizontal" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="setModalContent(7, 'image', 'dailyLife')">
+                    <img src="img/16.jpg" alt="小咪">
+                </div>
+                <h3 class="image-title"></h3>
+                <p class="image-description"></p>
+            </div>
+        </div>
+        <div class="title-decorator">
+            <img src="img/22.png" alt="Flower Icon">
+            <h2 class="text-center my-4">可愛動物影片區</h2>
+            <img src="img/22.png" alt="Flower Icon">
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-md-4 col-sm-6 custom-column">
+                <div class="video-container" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="setModalContent(0, 'video', 'cuteAnimalVideos')">
+                    <video controls>
+                        <source src="img/01.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <h3 class="image-title"></h3>
+                <p class="image-description">CHOCO的日常生活片段</p>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 custom-column">
+                <div class="video-container" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="setModalContent(1, 'video', 'cuteAnimalVideos')">
+                    <video controls>
+                        <source src="img/02.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <h3 class="image-title"></h3>
+                <p class="image-description">漢堡的調皮可愛瞬間</p>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 custom-column">
+                <div class="video-container" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="setModalContent(2, 'video', 'cuteAnimalVideos')">
+                    <video controls>
+                        <source src="img/03.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <h3 class="image-title"></h3>
+                <p class="image-description">咪寶的放鬆悠閒日常</p>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 custom-column">
+                <div class="video-container" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="setModalContent(3, 'video', 'cuteAnimalVideos')">
+                    <video controls>
+                        <source src="img/04.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <h3 class="image-title"></h3>
+                <p class="image-description">波特的誘惑人心時刻</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-md-4 col-sm-6 custom-column">
+                <div class="video-container" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="setModalContent(4, 'video', 'cuteAnimalVideos')">
+                    <video controls>
+                        <source src="img/005.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <h3 class="image-title"></h3>
+                <p class="image-description">微微的融化心靈日常</p>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 custom-column">
+                <div class="video-container" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="setModalContent(5, 'video', 'cuteAnimalVideos')">
+                    <video controls>
+                        <source src="img/06.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <h3 class="image-title"></h3>
+                <p class="image-description">芋圓的厭世勿擾日常</p>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 custom-column">
+                <div class="video-container" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="setModalContent(6, 'video', 'cuteAnimalVideos')">
+                    <video controls>
+                        <source src="img/07.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <h3 class="image-title"></h3>
+                <p class="image-description">小咪舒服放鬆的時刻</p>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 custom-column">
+                <div class="video-container" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="setModalContent(7, 'video', 'cuteAnimalVideos')">
+                    <video controls>
+                        <source src="img/08.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <h3 class="image-title"></h3>
+                <p class="image-description">松露的不解可愛行為</p>
+            </div>
+        </div>
+        <div class="title-decorator">
+            <img src="img/22.png" alt="Flower Icon">
+            <h2 class="text-center my-4">日常生活影片區</h2>
+            <img src="img/22.png" alt="Flower Icon">
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-md-4 col-sm-6 custom-column">
+                <div class="video-container-horizontal" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="setModalContent(0, 'video', 'dailyLifeVideos')">
+                    <video controls>
+                        <source src="img/09.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <h3 class="image-title"></h3>
+                <p class="image-description"></p>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 custom-column">
+                <div class="video-container-horizontal" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="setModalContent(1, 'video', 'dailyLifeVideos')">
+                    <video controls>
+                        <source src="img/10.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <h3 class="image-title"></h3>
+                <p class="image-description"></p>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 custom-column">
+                <div class="video-container-horizontal" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="setModalContent(2, 'video', 'dailyLifeVideos')">
+                    <video controls>
+                        <source src="img/11.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <h3 class="image-title"></h3>
+                <p class="image-description"></p>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 custom-column">
+                <div class="video-container-horizontal" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="setModalContent(3, 'video', 'dailyLifeVideos')">
+                    <video controls>
+                        <source src="img/12.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <h3 class="image-title"></h3>
+                <p class="image-description"></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-md-4 col-sm-6 custom-column">
+                <div class="video-container-horizontal" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="setModalContent(4, 'video', 'dailyLifeVideos')">
+                    <video controls>
+                        <source src="img/13.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <h3 class="image-title"></h3>
+                <p class="image-description"></p>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 custom-column">
+                <div class="video-container-horizontal" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="setModalContent(5, 'video', 'dailyLifeVideos')">
+                    <video controls>
+                        <source src="img/14.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <h3 class="image-title"></h3>
+                <p class="image-description"></p>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 custom-column">
+                <div class="video-container-horizontal" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="setModalContent(6, 'video', 'dailyLifeVideos')">
+                    <video controls>
+                        <source src="img/15.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <h3 class="image-title"></h3>
+                <p class="image-description"></p>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 custom-column">
+                <div class="video-container-horizontal" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="setModalContent(7, 'video', 'dailyLifeVideos')">
+                    <video controls>
+                        <source src="img/16.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <h3 class="image-title"></h3>
+                <p class="image-description"></p>
+            </div>
+        </div>
+        <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-fullscreen">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <button type="button" class="carousel-control-prev" onclick="prevContent()">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <img id="modalImage" src="" alt="Modal Image" style="display: none;">
+                        <video id="modalVideo" controls style="display: none;">
+                            <source src="" type="video/mp4">
+                        </video>
+                        <button type="button" class="carousel-control-next" onclick="nextContent()">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const cuteAnimals = [
+            'img/1.jpg',
+            'img/2.jpg',
+            'img/3.jpg',
+            'img/4.jpg',
+            'img/05.jpg',
+            'img/06.jpg',
+            'img/7.jpg',
+            'img/8.jpg'
+        ];
+
+        const dailyLife = [
+            'img/9.jpg',
+            'img/10.jpg',
+            'img/11.jpg',
+            'img/12.jpg',
+            'img/13.jpg',
+            'img/14.jpg',
+            'img/15.jpg',
+            'img/16.jpg'
+        ];
+
+        const cuteAnimalVideos = [
+            'img/01.mp4',
+            'img/02.mp4',
+            'img/03.mp4',
+            'img/04.mp4',
+            'img/005.mp4',
+            'img/06.mp4',
+            'img/07.mp4',
+            'img/08.mp4'
+        ];
+
+        const dailyLifeVideos = [
+            'img/09.mp4',
+            'img/10.mp4',
+            'img/11.mp4',
+            'img/12.mp4',
+            'img/13.mp4',
+            'img/14.mp4',
+            'img/15.mp4',
+            'img/16.mp4'
+        ];
+
+        let currentContentIndex = 0;
+        let currentContentType = 'image';
+        let currentSection = 'cuteAnimals';
+
+        function setModalContent(index, type, section) {
+            currentContentIndex = index;
+            currentContentType = type;
+            currentSection = section;
+            const modalVideo = document.getElementById('modalVideo');
+            const modalImage = document.getElementById('modalImage');
+
+            // 停止當前播放的影片
+            modalVideo.pause();
+            modalVideo.currentTime = 0;
+
+            const contentArray = (section === 'cuteAnimals' ? cuteAnimals : section === 'dailyLife' ? dailyLife : section === 'cuteAnimalVideos' ? cuteAnimalVideos : dailyLifeVideos);
+
+            if (type === 'image') {
+                modalImage.src = contentArray[index];
+                modalImage.style.display = 'block';
+                modalVideo.style.display = 'none';
+            } else if (type === 'video') {
+                modalVideo.src = contentArray[index];
+                modalImage.style.display = 'none';
+                modalVideo.style.display = 'block';
+                modalVideo.play();
+            }
+        }
+
+        document.getElementById('imageModal').addEventListener('hide.bs.modal', function () {
+            const modalVideo = document.getElementById('modalVideo');
+            modalVideo.pause();
+            modalVideo.currentTime = 0;
+        });
+
+        function prevContent() {
+            const contentArray = (currentSection === 'cuteAnimals' ? cuteAnimals : currentSection === 'dailyLife' ? dailyLife : currentSection === 'cuteAnimalVideos' ? cuteAnimalVideos : dailyLifeVideos);
+
+            const modalVideo = document.getElementById('modalVideo');
+            modalVideo.pause();
+            modalVideo.currentTime = 0;
+
+            if (currentContentType === 'image') {
+                if (currentContentIndex > 0) {
+                    currentContentIndex--;
+                    document.getElementById('modalImage').src = contentArray[currentContentIndex];
+                }
+            } else if (currentContentType === 'video') {
+                if (currentContentIndex > 0) {
+                    currentContentIndex--;
+                    document.getElementById('modalVideo').src = contentArray[currentContentIndex];
+                    document.getElementById('modalVideo').play();
+                }
+            }
+        }
+
+        function nextContent() {
+            const contentArray = (currentSection === 'cuteAnimals' ? cuteAnimals : currentSection === 'dailyLife' ? dailyLife : currentSection === 'cuteAnimalVideos' ? cuteAnimalVideos : dailyLifeVideos);
+
+            const modalVideo = document.getElementById('modalVideo');
+            modalVideo.pause();
+            modalVideo.currentTime = 0;
+
+            if (currentContentType === 'image') {
+                if (currentContentIndex < contentArray.length - 1) {
+                    currentContentIndex++;
+                    document.getElementById('modalImage').src = contentArray[currentContentIndex];
+                }
+            } else if (currentContentType === 'video') {
+                if (currentContentIndex < contentArray.length - 1) {
+                    currentContentIndex++;
+                    document.getElementById('modalVideo').src = contentArray[currentContentIndex];
+                    document.getElementById('modalVideo').play();
+                }
+            }
+        }
+    </script>
+</body>
+</html>

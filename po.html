@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="專門為愛寵之人打造的分享平台，提供寵物生活、照顧須知和負責任養寵的信息。">
+  <meta name="keywords" content="寵物, 貓, 狗, 寵物照顧, 負責任養寵">
+  <meta name="author" content="Your Name">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+  <title>寵物生活分享平台</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .button {
+      display: inline-block;
+      padding: 5px 5px;
+      margin: 5px;
+      font-size: 20px;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+      background-color: #ffcccb;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      transition: background-color 0.3s;
+    }
+    .button img {
+      width: 1em;
+      height: 1em;
+      vertical-align: middle;
+      margin-right: 10px;
+    }
+    .button:hover {
+      background-color: #f5b4b4;
+    }
+    .navbar-nav .nav-item .nav-link {
+      font-size: 20px;
+      margin: 0 5px;
+      padding: 5px;
+      border: 1px solid transparent;
+      border-radius: 5px;
+    }
+    .navbar-nav .nav-item .nav-link:hover {
+      border: 1px solid #333;
+      background-color: #dea4b6;
+    }
+    .navbar-nav .nav-item .nav-link.active {
+      border: 1px solid #333;
+      background-color: #e994d1;
+    }
+    .content {
+      padding: 20px;
+      background-color: rgba(255, 255, 255, 0.963);
+      border-radius: 10px;
+    }
+    .section-title {
+      display: flex;
+      align-items: center;
+    }
+    .section-title img {
+      margin-right: 10px;
+      width: 30px;
+      height: auto;
+    }
+    .section-title p {
+      font-size: 28px;
+      font-weight: bold;
+      color: #1c1c1e;
+    }
+    .highlight {
+      font-size: 22px;
+      font-weight: bold;
+      color: #e61b1b;
+      margin-top: 20px;
+    }
+    .important {
+      font-size: 18px;
+      color: #B22222;
+    }
+    .spaced-paragraph {
+      margin-top: 20px;
+    }
+    .adjustable-text {
+      font-size: 18px;
+      line-height: 1.8;
+    }
+    h1, h2 {
+      color: #020202;
+      font-size: 20px;
+    }
+    .decorative-element {
+      display: inline-block;
+      background-image: url('img/1.png');
+      background-size: contain;
+      width: 50px;
+      height: 50px;
+      margin-left: 10px;
+      vertical-align: middle;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light custom-navbar">
+    <div class="container-fluid">
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav" id="dynamic-nav">
+          <li class="nav-item">
+            <a class="button" href="kk.html"><img src="img/5.png" alt="Cat Icon">森林小徑</a>
+          </li>
+          <li class="nav-item">
+            <a class="button" href="as.html"><img src="img/5.png" alt="Cat Icon">寵愛生活</a>
+          </li>
+          <li class="nav-item">
+            <a class="button" href="po.html"><img src="img/5.png" alt="Cat Icon">寵物須知</a>
+          </li>
+          <li class="nav-item">
+            <a class="button" href="yu.html"><img src="img/5.png" alt="Cat Icon">關於我們</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div id="navbar-placeholder"></div>
+  <script>
+    fetch('navbar.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('navbar-placeholder').innerHTML = data;
+        updateNavLinks();
+      });
+
+    function updateNavLinks() {
+      const navLinks = [
+        { page: 'index.html', text: '首頁', href: 'index.html' },
+        { page: 'as.html', text: '寵愛生活', href: 'as.html' },
+        { page: 'po.html', text: '寵物須知', href: 'po.html' },
+        { page: 'yu.html', text: '關於我們', href: 'yu.html' }
+      ];
+
+      const currentPage = window.location.pathname.split('/').pop();
+      const navContainer = document.getElementById('dynamic-nav');
+
+      navLinks.forEach(link => {
+        const li = document.createElement('li');
+        li.className = 'nav-item';
+        const a = document.createElement('a');
+        a.className = 'nav-link';
+        if (link.page === currentPage) {
+          a.classList.add('active');
+        }
+        a.href = link.href;
+        a.textContent = link.text;
+        li.appendChild(a);
+        navContainer.appendChild(li);
+      });
+    }
+  </script>
+
+  <div class="content">
+    <div>
+      <h2 class="section-title">
+        <img src="img/1.png" alt="Cat Icon">
+        <p>寵物照顧須知</p>
+      </h2>
+    </div>
+
+    <p class="highlight">*健康管理：</p>
+    <p class="adjustable-text">
+        定期帶寵物進行健康檢查，並按時接種疫苗是確保寵物健康的重要措施。
+        這不僅有助於及早發現潛在的健康問題，還能有效預防各種傳染病的發生。
+        此外，定期的檢查可以讓獸醫全面了解寵物的健康狀況，並根據需要給出專業的護理建議。
+        注意觀察寵物的日常行為和身體狀況，及時發現異常並就醫，是每位寵物主人應盡的責任。
+        比如，觀察寵物的食欲、體重變化、活動量、皮膚和毛發的狀況等，這些都能反映出寵物的健康狀況。
+        一旦發現寵物有異常表現，如食欲不振、精神萎靡、嘔吐、腹瀉或其他不尋常的症狀，應立即就醫，避免病情惡化。
+        此外，定期給寵物進行體內外的驅蟲也是不可忽視的一環，以防止寄生蟲對寵物健康的威脅。
+        總之，細心的觀察和及時的醫療護理，能夠有效延長寵物的壽命，讓它們陪伴我們更長久的時間。
+        寵物是我們的家庭成員，為它們提供最好的照顧，是每一位負責任的主人應該做到的。
+    </p>
+    <div style="display: flex; align-items: center;">
+      <img src="img/67.jpg" alt="健康管理圖片" style="width:50%;height:auto;">
+    </div>
+
+    <p class="highlight">*飲食營養：</p>
+    <p class="adjustable-text">
+        為寵物提供均衡的飲食是保障其健康的基礎。選擇適合寵物種類和年齡的食物，避免過量喂食，保持適當體重。
+        此外，定期為寵物提供新鮮的水源，確保它們隨時可以飲用。了解不同寵物的營養需求是非常重要的，因為狗和貓在營養攝取方面有很大的不同。
+        對於狗來說，均衡的飲食應該包含蛋白質、脂肪、碳水化合物、維生素和礦物質。
+        而貓則需要更高的蛋白質和特定的氨基酸，如牛磺酸。
+        選擇高質量的商業寵物食品或自制食品時，應該參考獸醫的建議，以確保食品中的成分符合寵物的營養需求。
+        在餵養過程中，注意控制食物的份量，避免給予過多零食或人類食物，因為這些可能導致營養不均衡或肥胖問題。
+        定期檢查寵物的體重和健康狀況，根據需要調整飲食計劃。參加定期的獸醫檢查，有助於及早發現和解決潛在的健康問題。
+    </p>
+    <div style="display: flex; align-items: center;">
+      <img src="img/68.jpg" alt="飲食營養圖片" style="width:50%;height:auto;">
+    </div>
+
+    <p class="highlight">*運動與活動：</p>
+    <p class="adjustable-text">
+        當我們談到寵物的健康時，不僅僅是指它們的身體健康，心理健康同樣重要。
+        定期的運動和活動對於寵物來說是至關重要的，這不僅能幫助它們保持健康的體重，還能促進心血管健康。
+        帶寵物散步、跑步或進行其他形式的運動，可以有效地增強它們的肌肉力量和耐力。
+        此外，運動還能促進寵物的新陳代謝，幫助它們消耗多餘的能量，從而避免肥胖等健康問題。
+        除了身體上的好處，運動對寵物的心理健康也有顯著的積極影響。
+        通過定期的運動和遊戲，寵物可以釋放積聚的精力，減少焦慮和壓力，從而改善行為問題。
+        比如，與主人互動的遊戲可以加強主人與寵物之間的感情聯繫，增強信任感。
+        此外，讓寵物有機會與其他動物或人接觸，可以提高它們的社交能力，減少孤獨感和分離焦慮。
+    </p>
+    <div style="display: flex; align-items: center;">
+      <img src="img/69.jpg" alt="運動與活動圖片" style="width:50%;height:auto;">
+    </div>
+
+    <p class="highlight">*居住環境：</p>
+    <p class="adjustable-text">
+        當我們為寵物提供一個安全、舒適的居住環境時，不僅僅是滿足其基本需求，更是展現我們對牠們的關愛。
+        首先，定期清潔寵物的生活空間非常重要。這不僅能防止疾病的傳播，還能讓寵物生活在一個乾淨、衛生的環境中。
+        其次，我們需要確保寵物有足夠的活動空間。
+        活動對於寵物的身體健康和心理健康都至關重要，適當的運動能促進血液循環，減少肥胖的風險，並且能讓寵物心情愉快。
+        此外，舒適的休息區域同樣不可忽視。選擇適合的床墊或墊子，確保其柔軟且支持良好，這樣寵物可以在休息時得到充分的放鬆和恢復。
+        為了進一步提高寵物的生活質量，我們還可以提供一些玩具和互動設備，讓牠們在室內也能享受到樂趣和挑戰。
+        最後，定期帶寵物進行健康檢查，確保其身體狀況良好，並且及時處理任何健康問題。
+        通過這些細心的照顧，我們可以讓寵物在一個安全、舒適的環境中健康成長，享受快樂的生活。
+    </p>
+    <div style="display: flex; align-items: center;">
+      <img src="img/70.jpg" alt="居住環境圖片" style="width:50%;height:auto;">
+    </div>
+
+    <p class="highlight">*社交與培訓：</p>
+    <p class="adjustable-text">
+        當我們養寵物時，不僅僅是提供食物和庇護所，更重要的是要讓牠們成為我們家庭的一部分。
+        寵物需要透過互動來培養良好的行為習慣。參與基本訓練課程，讓寵物學會基本的指令和規範行為，增進與主人的感情。
+        這些訓練不僅可以讓寵物更加聽話，還能幫助牠們建立自信和安全感。此外，透過訓練，主人也能更了解寵物的需求和行為，從而更好地照顧牠們。
+        訓練寵物的過程中，主人需要有耐心和一致性，使用正向增強的方法來鼓勵正確的行為，例如獎勵小零食或讚美聲音。
+        這不僅能讓寵物感到愉快，也能加深牠們對訓練的興趣。
+        除了基本的坐下、待命等指令外，還可以加入一些有趣的技巧訓練，例如握手、轉圈等，這些都能增加訓練的樂趣。
+        每天花時間與寵物互動，進行訓練和遊戲，不僅能讓牠們保持活力，還能減少行為問題的發生。
+        定期參加訓練課程，與其他寵物和主人交流經驗，也能幫助寵物社交能力的提升。
+        最終，透過這些訓練和互動，主人與寵物之間的關係將會變得更加親密，生活也會因此更加豐富多彩。
+    </p>
+    <div style="display: flex; align-items: center;">
+      <img src="img/71.jpg" alt="社交與培訓圖片" style="width:50%;height:auto;">
+    </div>
+
+    <p class="highlight">*情感關懷：</p>
+    <p class="adjustable-text">
+        當您選擇擁有一隻寵物時，您不僅僅是獲得了一個可愛的夥伴，更是迎來了一位需要您悉心照顧的家庭成員。
+        寵物和人一樣需要情感關懷。陪伴、撫摸和與寵物互動，讓它們感受到您的愛和關心，是維護它們心理健康的重要因素。
+        每天花些時間陪伴您的寵物，無論是簡單的散步、玩耍，還是輕柔的撫摸，都能夠讓它們感受到溫暖和安全感。
+        此外，與寵物互動不僅僅是為了它們的幸福，也是對您自身情感的豐富和充實。
+        研究表明，與寵物的互動能夠減少壓力、降低血壓，甚至增加幸福感。
+        這種互相依賴和照顧的關係，不僅能夠讓寵物感到被愛，也能夠讓您在繁忙的生活中找到一份平靜和喜悅。
+    </p>
+    <div style="display: flex; align-items: center;">
+      <img src="img/72.jpg" alt="情感關懷圖片" style="width:50%;height:auto;">
+    </div>
+  </div>
+</body>
+</html>
